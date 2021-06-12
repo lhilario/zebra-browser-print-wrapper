@@ -1,0 +1,29 @@
+{
+    "name": "zebra-browser-print-wrapper",
+    "version": "0.1.0",
+    "description": "Zebra Browser Print Javascript Wrapper",
+    "main": "./src/index.js",
+    "scripts": {
+        "test": "node test.js"
+    },
+    "dependencies": {
+        "axios": "^0.21.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lhilario/zebra-browser-print-wrapper.git"
+    },
+    "keywords": [
+        "zpl",
+        "zebra",
+        "zebra programming language",
+        "zebra printers",
+        "barcode"
+    ],
+    "author": "Luismar Hilario",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/lhilario/zebra-browser-print-wrapper/issues"
+    },
+    "homepage": "https://github.com/lhilario/zebra-browser-print-wrapper#readme"
+}
