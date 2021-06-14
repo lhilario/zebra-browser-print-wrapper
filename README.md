@@ -6,11 +6,15 @@ This package is a wrapper for the [Zebra Browser Print](https://www.zebra.com/la
 
 Install the module in your project via YARN
 
-`yarn add zebra-browser-print-wrapper`
+```bash
+yarn add zebra-browser-print-wrapper
+```
 
 Or NPM
 
-`npm i zebra-browser-print-wrapper`
+```bash
+npm i zebra-browser-print-wrapper
+```
 
 
 ## Available Methods
@@ -37,10 +41,12 @@ Returns an object indicating if the printer is ready and if not returns the erro
 
 **Returned object:**
 
-`{
+```js
+{
  isReadyToPrint: boolean;
  errors: string
-}`
+}
+```
 
 **Possible errors:**
 
@@ -61,6 +67,7 @@ Returns an object indicating if the printer is ready and if not returns the erro
 
 ## Example
 
+```js
     // Import the zebra-browser-prit-wrapper package
     const  ZebraBrowserPrintWrapper = require('zebra-browser-print-wrapper');
 
@@ -101,3 +108,4 @@ Returns an object indicating if the printer is ready and if not returns the erro
     const serial = "0123456789";
 
     printBarcode(serial);
+```
