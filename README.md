@@ -68,44 +68,44 @@ Returns an object indicating if the printer is ready and if not returns the erro
 ## Example
 
 ```js
-    // Import the zebra-browser-prit-wrapper package
-    const  ZebraBrowserPrintWrapper = require('zebra-browser-print-wrapper');
+// Import the zebra-browser-prit-wrapper package
+const  ZebraBrowserPrintWrapper = require('zebra-browser-print-wrapper');
 
-    const printBarcode = async (serial) => {
-        try {
+const printBarcode = async (serial) => {
+    try {
 
-            // Create a new instance of the object
-            const browserPrint =  new ZebraBrowserPrintWrapper();
-    
-            // Select default printer field
-            const defaultPrinter =  await browserPrint.getDefaultPrinter();
-        
-            // Set the printer
-            browserPrint.setPrinter(defaultPrinter);
-    
-            // Check printer status
-            const printerStatus = await browserPrint.checkPrinterStatus();
-    
-            // Check if the printer is ready
-            if(printerStatus.isReadyToPrint) {
+        // Create a new instance of the object
+        const browserPrint =  new ZebraBrowserPrintWrapper();
 
-                // ZPL script to print a simple barcode
-                const zpl = `^XA
-                            ^BY2,2,100
-                            ^FO20,20^BC^FD${serial}^FS
-                            ^XZ`;
-
-                browserPrint.print(zpl);
-            } else {
-            console.log("Error/s", printerStatus.errors);
-            }
+        // Select default printer
+        const defaultPrinter =  await browserPrint.getDefaultPrinter();
     
-        } catch (error) {
-            throw new Error(error);
+        // Set the printer
+        browserPrint.setPrinter(defaultPrinter);
+
+        // Check printer status
+        const printerStatus = await browserPrint.checkPrinterStatus();
+
+        // Check if the printer is ready
+        if(printerStatus.isReadyToPrint) {
+
+            // ZPL script to print a simple barcode
+            const zpl = `^XA
+                        ^BY2,2,100
+                        ^FO20,20^BC^FD${serial}^FS
+                        ^XZ`;
+
+            browserPrint.print(zpl);
+        } else {
+        console.log("Error/s", printerStatus.errors);
         }
-    };
 
-    const serial = "0123456789";
+    } catch (error) {
+        throw new Error(error);
+    }
+};
 
-    printBarcode(serial);
+const serial = "0123456789";
+
+printBarcode(serial);
 ```
