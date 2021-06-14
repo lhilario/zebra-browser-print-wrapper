@@ -6,9 +6,7 @@
     "scripts": {
         "test": "node test.js"
     },
-    "dependencies": {
-        "axios": "^0.21.1"
-    },
+    "dependencies": {},
     "repository": {
         "type": "git",
         "url": "git+https://github.com/lhilario/zebra-browser-print-wrapper.git"
