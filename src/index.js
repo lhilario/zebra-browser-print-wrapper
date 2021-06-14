@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 const API_URL = 'http://localhost:9100/';
 
 class ZebraBrowserPrintWrapper {
@@ -10,11 +8,20 @@ class ZebraBrowserPrintWrapper {
 
     getAvailablePrinters = async () => {
 
+        const config = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'text/plain;charset=UTF-8'
+            }
+        };
+
         const endpoint = API_URL + 'available';
 
         try {
-            const req = await axios(endpoint);
-            const data = req.data;
+            const res = await fetch(endpoint, config);
+
+            const data = await res.json();
+
             if(data && data !== undefined && data.printer && data.printer !== undefined && data.printer.length > 0) {
                 return data.printer;
             }
@@ -29,11 +36,18 @@ class ZebraBrowserPrintWrapper {
 
     getDefaultPrinter = async () => {
 
+        const config = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'text/plain;charset=UTF-8'
+            }
+        };
+
         const endpoint = API_URL + 'default';
 
         try {
-            const req = await axios(endpoint);
-            const data = req.data;
+            const res = await fetch(endpoint, config);
+            const data = await res.text();
 
             if(data && data !== undefined && typeof data !== "object" && data.split("\n\t").length === 7) {
                 const deviceRaw = data.split("\n\t");
@@ -141,18 +155,20 @@ class ZebraBrowserPrintWrapper {
         try {
             const endpoint = API_URL + 'write';
 
-            const config = {
-                headers: {
-                    'Content-Type': 'text/plain;charset=UTF-8'
-                }
-            };
-    
             const myData = {
                 device: this.device,
                 data: data
             };
-    
-            await axios.post(endpoint, myData, config);
+
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain;charset=UTF-8'
+                },
+                body: JSON.stringify(myData)
+            };
+
+            await fetch(endpoint, config);
         } catch(error) {
             throw new Error(error);
         }
@@ -162,18 +178,23 @@ class ZebraBrowserPrintWrapper {
         try {
             const endpoint = API_URL + 'read';
 
-            const config = {
-                headers: {
-                    'Content-Type': 'text/plain;charset=UTF-8'
-                }
-            };
-    
             const myData = {
                 device: this.device,
             };
+
+            const config = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain;charset=UTF-8'
+                },
+                body: JSON.stringify(myData)
+            };
+
+            
     
-            const result = await axios.post(endpoint, myData, config);
-            return result.data;
+            const res = await fetch(endpoint, config);
+            const data = await res.text();
+            return data;
         } catch(error) {
             throw new Error(error);
         }
