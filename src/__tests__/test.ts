@@ -24,7 +24,7 @@ const printBarcode = async (serial) => {
           return true;
           
       } else {
-        console.log("Error/s", printerStatus.errors);\
+        console.log("Error/s", printerStatus.errors);
         return false;
       }
 
