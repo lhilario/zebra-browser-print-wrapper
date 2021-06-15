@@ -1,10 +1,10 @@
-const API_URL = 'http://localhost:9100/';
+import { API_URL } from './constants';
 
-class ZebraBrowserPrintWrapper {
+import { Device} from './types';
 
-    constructor() {
-        this.device = {};
-    }
+export default class ZebraBrowserPrintWrapper {
+
+    device: Device = <Device>{};
 
     getAvailablePrinters = async () => {
 
@@ -34,7 +34,7 @@ class ZebraBrowserPrintWrapper {
 
     };
 
-    getDefaultPrinter = async () => {
+    getDefaultPrinter = async (): Promise<Device> => {
 
         const config = {
             method: 'GET',
@@ -70,7 +70,7 @@ class ZebraBrowserPrintWrapper {
                 };
             }
 
-            return new Error("There's no default printer");
+            throw new Error("There's no default printer");
 
         } catch (error) {
             throw new Error(error);
@@ -78,18 +78,18 @@ class ZebraBrowserPrintWrapper {
 
     };
 
-    setPrinter = (device) => {
+    setPrinter = (device: Device) => {
         this.device = device;
     };
 
-    getPrinter = () => {
+    getPrinter = (): Device => {
         return this.device;
     };
 
-    cleanUpString = (str) => {
-        str = str.split(":");
-        str = str[1].trim();
-        return str;
+    cleanUpString = (str: string): string => {
+        const arr = str.split(":");
+        const result = arr[1].trim();
+        return result;
     };
 
     checkPrinterStatus = async () => {
@@ -142,7 +142,7 @@ class ZebraBrowserPrintWrapper {
 
         if (pause === '1') errors.push("Printer Paused");
 
-        if (!isReadyToPrint && errors.Count === 0) errors.push("Error: Unknown Error");
+        if (!isReadyToPrint && errors.length === 0) errors.push("Error: Unknown Error");
 
         return {
             isReadyToPrint,
@@ -151,7 +151,7 @@ class ZebraBrowserPrintWrapper {
 
     };
 
-    write = async (data) => {
+    write = async (data: string) => {
         try {
             const endpoint = API_URL + 'write';
 
@@ -200,7 +200,7 @@ class ZebraBrowserPrintWrapper {
         }
     };
 
-    print = async (text) => {
+    print = async (text: string) => {
         try {
             await this.write(text);
         } catch (error) {
@@ -209,5 +209,3 @@ class ZebraBrowserPrintWrapper {
     };
 
 }
-
-module.exports = ZebraBrowserPrintWrapper;

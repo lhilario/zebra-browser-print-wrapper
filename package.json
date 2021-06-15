@@ -2,9 +2,13 @@
     "name": "zebra-browser-print-wrapper",
     "version": "0.1.2",
     "description": "Zebra Browser Print Javascript Wrapper",
-    "main": "./src/index.js",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "scripts": {
-        "test": "node test.js"
+        "build": "tsc",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+        "lint": "tslint -p tsconfig.json",
+        "test": "jest --config jestconfig.json"
     },
     "dependencies": {},
     "repository": {
@@ -18,10 +22,20 @@
         "zebra printers",
         "barcode"
     ],
+    "files": ["lib/**/*"],
     "author": "Luismar Hilario",
     "license": "GPL-3.0",
     "bugs": {
         "url": "https://github.com/lhilario/zebra-browser-print-wrapper/issues"
     },
-    "homepage": "https://github.com/lhilario/zebra-browser-print-wrapper#readme"
+    "homepage": "https://github.com/lhilario/zebra-browser-print-wrapper#readme",
+    "devDependencies": {
+        "@types/jest": "^26.0.23",
+        "jest": "^27.0.4",
+        "prettier": "^2.3.1",
+        "ts-jest": "^27.0.3",
+        "tslint": "^6.1.3",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^4.3.2"
+    }
 }
