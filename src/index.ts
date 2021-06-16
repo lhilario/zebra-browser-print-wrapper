@@ -2,6 +2,8 @@ import { API_URL } from './constants';
 
 import { Device} from './types';
 
+console.log(global.fetch)
+
 export default class ZebraBrowserPrintWrapper {
 
     device: Device = <Device>{};

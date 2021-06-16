@@ -22,7 +22,9 @@
         "zebra printers",
         "barcode"
     ],
-    "files": ["lib/**/*"],
+    "files": [
+        "lib/**/*"
+    ],
     "author": "Luismar Hilario",
     "license": "GPL-3.0",
     "bugs": {
@@ -32,6 +34,7 @@
     "devDependencies": {
         "@types/jest": "^26.0.23",
         "jest": "^27.0.4",
+        "node-fetch": "^2.6.1",
         "prettier": "^2.3.1",
         "ts-jest": "^27.0.3",
         "tslint": "^6.1.3",

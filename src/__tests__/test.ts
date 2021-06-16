@@ -1,7 +1,8 @@
 import ZebraBrowserPrintWrapper from '../index';
 
+global.fetch = require('node-fetch').default;
 
-const printBarcode = async (serial) => {
+const printBarcode = async (serial: string): Promise<boolean> => {
   try {
 
       const browserPrint =  new ZebraBrowserPrintWrapper();
@@ -29,12 +30,14 @@ const printBarcode = async (serial) => {
       }
 
     } catch (error) {
+      console.log("Error",  error);
       return false;
     }
 };
 
 test('Print Bar Code', async () => {
   const serial = "0123456789";
-  expect(await printBarcode(serial)).toBe(true);
+  const result = await printBarcode(serial);
+  expect(result).toBe(true);
 });
 
