@@ -61,8 +61,11 @@ Returns an object indicating if the printer is ready and if not returns the erro
 - Printer Paused
 - Unknown Error
 
-##### **print()**
+##### **print(str)**
 
+Prints a text string.
+
+You can use this method with simple text or add a string using the [ZPL language](https://www.zebra.com/content/dam/zebra/manuals/printers/common/programming/zpl-zbi2-pm-en.pdf "ZPL language")
 
 
 ## Example
