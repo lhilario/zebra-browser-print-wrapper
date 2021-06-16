@@ -1,6 +1,6 @@
 {
     "name": "zebra-browser-print-wrapper",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "Zebra Browser Print Javascript Wrapper",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
