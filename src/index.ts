@@ -166,7 +166,7 @@ export default class ZebraBrowserPrintWrapper {
     }
   };
 
-  writeForm = async (data: string) => {
+  writeForm = async (data: BlobPart[]) => {
     try {
       const endpoint = API_URL + 'write';
 
@@ -176,7 +176,7 @@ export default class ZebraBrowserPrintWrapper {
 
       var formData = new FormData;
       formData.append("json", JSON.stringify(myData));
-      formData.append("blob", data);  
+      formData.append("blob", new Blob(data, {type: 'application/epl'}));  
 
       const config = {
         method: 'POST',
@@ -224,7 +224,7 @@ export default class ZebraBrowserPrintWrapper {
     }
   };
 
-  printForm = async (text: string) => {
+  printForm = async (text: BlobPart[]) => {
     try {
       await this.writeForm(text);
     } catch (error) {
