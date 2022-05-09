@@ -181,7 +181,7 @@ export default class ZebraBrowserPrintWrapper {
       const config = {
         method: 'POST',
         headers: {
-          'Content-Type': 'text/plain;charset=UTF-8',
+          'Content-Type': 'text/html',
         },
         body: formData,
       };
