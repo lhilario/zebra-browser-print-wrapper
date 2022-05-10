@@ -166,23 +166,20 @@ export default class ZebraBrowserPrintWrapper {
     }
   };
 
-  writeForm = async (data: BlobPart[]) => {
+  writeBlob = async (data: Blob) => {
     try {
       const endpoint = API_URL + 'write';
 
-      const myData = {
+      const deviceData = {
         device: this.device
       };
 
       var formData = new FormData;
-      formData.append("json", JSON.stringify(myData));
-      formData.append("blob", new Blob(data, {type: 'application/epl'}));  
+      formData.append("json", JSON.stringify(deviceData));
+      formData.append("blob", data);
 
       const config = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/html',
-        },
+        method: "POST",
         body: formData,
       };
 
@@ -224,9 +221,9 @@ export default class ZebraBrowserPrintWrapper {
     }
   };
 
-  printForm = async (text: BlobPart[]) => {
+  printBlob = async (text: Blob) => {
     try {
-      await this.writeForm(text);
+      await this.writeBlob(text);
     } catch (error) {
       throw new Error(error);
     }
