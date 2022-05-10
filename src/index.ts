@@ -189,6 +189,31 @@ export default class ZebraBrowserPrintWrapper {
     }
   };
 
+  writeUrl = async (url: string) => {
+    try {
+      const endpoint = API_URL + 'write';
+
+      const deviceData = {
+        device: this.device
+      };
+
+      const contentBlob = await fetch(url).then(r => r.blob());
+
+      var formData = new FormData;
+      formData.append("json", JSON.stringify(deviceData));
+      formData.append("blob", contentBlob);
+
+      const config = {
+        method: 'POST',
+        body: formData,
+      };
+
+      await fetch(endpoint, config);
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
   read = async () => {
     try {
       const endpoint = API_URL + 'read';
@@ -224,6 +249,14 @@ export default class ZebraBrowserPrintWrapper {
   printBlob = async (text: Blob) => {
     try {
       await this.writeBlob(text);
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  printUrl = async (url: string) => {
+    try {
+      await this.writeUrl(url);
     } catch (error) {
       throw new Error(error);
     }
