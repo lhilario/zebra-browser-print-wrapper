@@ -1,6 +1,6 @@
 /node_modules
 
-/lib
+# /lib
 
 npm-debug.log*
 yarn-debug.log*

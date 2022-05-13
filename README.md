@@ -65,8 +65,19 @@ Returns an object indicating if the printer is ready and if not returns the erro
 
 Prints a text string.
 
-You can use this method with simple text or add a string using the [ZPL language](https://www.zebra.com/content/dam/zebra/manuals/printers/common/programming/zpl-zbi2-pm-en.pdf "ZPL language")
+You can use this method with simple text or add a string using the [ZPL language](https://www.zebra.com/content/dam/zebra/manuals/printers/common/programming/zpl-zbi2-pm-en.pdf "ZPL language").
 
+##### **printBlob(Blob)**
+
+Prints a Blob.
+
+This also allows printing using the [EPL language](https://www.zebra.com/us/en/support-downloads/knowledge-articles/ait/epl2-command-information-and-details.html).
+
+##### **printUrl(str)**
+
+Grab's the URL's content as Blob and send to the Printer.
+
+This also allows printing EPL.
 
 ## Example
 
